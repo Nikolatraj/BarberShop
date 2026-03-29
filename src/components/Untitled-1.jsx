@@ -1,0 +1,211 @@
+import './ZakaziTerminContent.css'
+import 'react-calendar/dist/Calendar.css';
+import Calendar from 'react-calendar';
+import { useState } from 'react'; 
+import { useNavigate } from 'react-router-dom';
+import mi from "@/assets/mi.png";
+
+function ZakaziTerminContent() {
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedFrizer, setSelectedFrizer] = useState(); 
+    const [selectedTime, setSelectedTime] = useState();
+    const [selectedService, setSelectedService] = useState();
+    const navigate = useNavigate();
+
+    const frizeri = [
+        { id: 1, name: "Nemanja",  img: mi },
+        { id: 2, name: "Ognjen", img: mi },
+        { id: 3, name: "Nikola", img: mi }
+    ];
+
+    const usluge = [
+        { id: 1, name: "Muško šišanje", price: 1000, duration: 30 },
+        { id: 2, name: "Brijanje brade", price: 800, duration: 20 },
+        { id: 3, name: "Šišanje + brada", price: 1500, duration: 45 },
+        { id: 4, name: "Dečije šišanje", price: 700, duration: 25 }
+    ];
+    
+    const RezervisaniTermini = [
+        new Date(2026, 1, 25), 
+        new Date(2026, 1, 28), 
+    ];
+    
+    const RadnoVreme = [
+        "09:00", "10:00", "11:00", "12:00",
+        "13:00", "14:00", "15:00", "16:00", "17:00"
+    ];
+
+    const RezervisanaVremena = [
+        { frizerId: 1, date: "2026-02-20", time: "10:00" },
+        { frizerId: 1, date: "2026-02-20", time: "14:00" },
+        { frizerId: 2, date: "2026-02-21", time: "11:00" },
+        { frizerId: 3, date: "2026-02-20", time: "15:00" },
+    ];
+
+    const isTimeReserved = (time) => {
+        if (!selectedFrizer || !selectedDate) return false;
+        
+        const dateString = selectedDate.toISOString().split('T')[0];
+        
+        return RezervisanaVremena.some(reservation => 
+            reservation.frizerId === selectedFrizer.id &&
+            reservation.date === dateString &&
+            reservation.time === time
+        );
+    };
+
+    const NedostupniTermin = ({date, view}) => {
+        if(view === 'month'){
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            if(date < today)
+                return true;
+            if(date.getDay() === 0)
+                return true;
+            const isRezervisanTermin = RezervisaniTermini.some(RezervisanDate => 
+                RezervisanDate.toDateString() === date.toDateString());
+            if (isRezervisanTermin)
+                return true;
+            return false;
+        }
+    };
+
+    const handleBooking = async () => {
+        // Check if all fields are selected
+        if (!selectedService) {
+            alert('Molimo izaberite uslugu');
+            return;
+        }
+        if (!selectedFrizer) {
+            alert('Molimo izaberite frizera');
+            return;
+        }
+        if (!selectedDate) {
+            alert('Molimo izaberite datum');
+            return;
+        }
+        if (!selectedTime) {
+            alert('Molimo izaberite vreme');
+            return;
+        }
+
+        // For now, just fake the submission (replace this later with real Flask call)
+        const bookingData = {
+            serviceId: selectedService.id,
+            serviceName: selectedService.name,
+            servicePrice: selectedService.price,
+            frizerId: selectedFrizer.id,
+            frizerName: selectedFrizer.name,
+            date: selectedDate.toISOString().split('T')[0], // "2026-02-20"
+            time: selectedTime
+        };
+
+        console.log('Booking data:', bookingData);
+        alert(`Termin zakazan!\nUsluga: ${bookingData.serviceName}\nFrizer: ${bookingData.frizerName}\nDatum: ${bookingData.date}\nVreme: ${bookingData.time}\nCena: ${bookingData.servicePrice} RSD`);
+
+        // When you connect Flask, replace the above with:
+        /*
+        try {
+            const response = await fetch('http://localhost:5000/zakazi-termin', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(bookingData)
+            });
+
+            const data = await response.json();
+            
+            if (data.success) {
+                alert('Termin uspešno zakazan!');
+                navigate('/'); // redirect to home or confirmation page
+            } else {
+                alert('Greška: ' + data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Došlo je do greške pri zakazivanju');
+        }
+        */
+    };
+    
+    return(
+        <div className='termin'>
+            <div className='termin-container'>
+                {/* Step 1: Services (always shown) */}
+                <h2>Izaberite uslugu</h2>
+                <div className="usluge-container">
+                   {usluge.map(usluga => (
+                    <div 
+                        key={usluga.id}  
+                        className={`usluga ${selectedService?.id === usluga.id ? 'selected' : ''}`}
+                        onClick={() => setSelectedService(usluga)}>
+                        <h3>{usluga.name}</h3>
+                        <p>{usluga.price} RSD</p>
+                        <p>{usluga.duration} min</p>
+                    </div>
+                   ))}
+                </div>
+
+                {/* Step 2: Barbers (only show if service is selected) */}
+                {selectedService && (
+                    <>
+                        <h2>Izaberite frizera</h2>
+                        <div className="frizer-container">
+                           {frizeri.map(frizer => (
+                            <div 
+                                key={frizer.id}  
+                                className={`frizer ${selectedFrizer?.id === frizer.id ? 'selected' : ''}`} // ? nas brani ako je null 
+                                onClick={() => setSelectedFrizer(frizer)}>
+                                <p>{frizer.name}</p>
+                                <img src={frizer.img} alt={frizer.name} />
+                            </div>
+                           ))}
+                        </div>
+                    </>
+                )}
+                
+                {/* Step 3: Calendar (only show if service and barber are selected) */}
+                {selectedService && selectedFrizer && (
+                    <div className='calendar-container'>
+                        <Calendar 
+                            onChange={setSelectedDate} 
+                            value={selectedDate}
+                            tileDisabled={NedostupniTermin}
+                            maxDetail="month"
+                            minDetail="month"
+                        />
+                    </div>
+                )}
+
+                {/* Step 4: Time slots (only show if service, barber, and date are selected) */}
+                {selectedService && selectedFrizer && selectedDate && (
+                    <div className='radno-vreme-container'>
+                        <h2>Izaberite Vreme</h2>
+                        <div className='radno-vreme'>
+                            {RadnoVreme.map(vreme => {
+                                const reserved = isTimeReserved(vreme);
+                                return (
+                                    <button
+                                        key={vreme}
+                                        className={`radno-vreme-button ${selectedTime === vreme ? 'selected' : ''} ${reserved ? 'reserved' : ''}`}
+                                        onClick={() => !reserved && setSelectedTime(vreme)}
+                                        disabled={reserved}
+                                    >
+                                        {vreme}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
+
+                {/* Confirm button (only show if everything is selected) */}
+                {selectedService && selectedFrizer && selectedDate && selectedTime && (
+                    <button className="potvrdi-termin-btn" onClick={handleBooking}>
+                        Potvrdi Termin
+                    </button>
+                )}
+            </div>
+        </div>
+    )
+}
+export default ZakaziTerminContent

@@ -1,0 +1,5 @@
+#F7F7F2 Bela
+#020202 Crna
+#2C407D Plava
+#7D8491 Siva
+#A93B3D Crvena

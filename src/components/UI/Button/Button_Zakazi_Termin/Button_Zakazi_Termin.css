@@ -1,0 +1,14 @@
+.button_zakazi_termin
+{
+    background-color: #2C407D;
+    color: #F7F7F2;
+    border: 1px solid #2C407D;
+    border-radius: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 20px;
+    white-space: nowrap;
+
+}

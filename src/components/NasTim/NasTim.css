@@ -1,0 +1,58 @@
+.nas-tim {
+  background-color: #ffffff;
+  padding: 30px;
+  text-align: center;
+  color: #000;
+}
+
+.nas-tim-title {
+  font-size: 90px;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+.nas-tim-text {
+  max-width: 900px;
+  margin: 0 auto 70px;
+  font-size: 23px;
+  line-height: 1.5;
+  color: #6b6b6b;
+}
+
+.tim-kartice {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.tim-kartica {
+  width: 350px;
+  text-align: left;
+  
+}
+
+.tim-kartica img {
+  width: 90%;
+  height: 380px;
+  object-fit: cover;
+}
+
+.tim-kartica h3 {
+  margin-top: 18px;
+  margin-bottom: 0px;
+  font-size: 30px;
+  letter-spacing: 1px;
+}
+
+.pozicija {
+  font-size: 30px;
+  margin-top: 4px;
+  margin-bottom: 0px;
+}
+
+.iskustvo {
+  font-size: 18px;
+  color: #6b6b6b;
+  
+}

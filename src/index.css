@@ -1,0 +1,25 @@
+body
+{
+    margin:0px;
+    padding: 0px;
+}
+html,body,#root
+{
+   height: 100%;
+   width: 100%;
+
+   background-image: url("@/assets/bg.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   
+   font-family: "Oswald", sans-serif;
+   color: #F7F7F2;
+}
+
+button, h2 {
+   font-family: "Oswald", sans-serif;
+}
+html, body {
+  overflow-x: hidden;
+}

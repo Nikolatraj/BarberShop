@@ -1,0 +1,150 @@
+.signup
+{
+   
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    
+}
+
+.signup-container
+{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    margin-top: 50px;
+    align-self: center;
+    width: 800px ;
+    height: 450px;
+    background-color: #F7F7F2;
+    border-radius: 30px;
+}
+.signup-slika
+{
+    flex: 1;
+   
+    align-self: center;
+}
+.logo
+{
+    height: 350px;
+    width: 350px;
+}
+.signup-forma {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+}
+
+.signup-forma-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1; 
+  gap: 14px;
+}
+.signup-forma h1
+{
+    color: #020202;
+    font-weight: 500;
+    
+}.signup-forma h4
+{
+    color: white; 
+    margin-top: auto; 
+    padding-bottom: 10px;
+}
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.input-grupa1
+{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    gap: 10px;
+}
+.input-grupa2
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;    
+}
+.input-grupa {
+  display: flex;
+  align-items: center;
+  background: #b8b8b8;
+  border-radius: 100px; 
+  padding: 12px 18px;
+  width: 150px;
+}
+
+.input-grupa .icon {
+  font-size: 14px;
+  opacity: 0.6;
+  margin-right: 10px;
+}
+
+.input-grupa input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+}
+
+.input-grupa:focus-within {
+  background: #c2c2c2;
+}
+.input-grupa-ep {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background: #bbbbbb;
+  border-radius: 100px; 
+  padding: 12px 18px;
+  width: 350px; 
+  
+  
+}
+
+.input-grupa-ep .icon {
+  font-size: 14px;
+  opacity: 0.6;
+  margin-right: 10px;
+}
+
+.input-grupa-ep input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+}
+
+.input-grupa-ep:focus-within {
+  background: #c2c2c2;
+}
+input::placeholder {
+  color: #000000; 
+  opacity: 1;     
+}
+
+.signup-btn
+{ padding: 7px 18px;
+  width: 386px;
+  margin-top: 20px;
+  font-size: 16px;
+  border-radius: 100px; 
+  background-color: #2C407D;
+  color: #F7F7F2;
+  border-color: #2C407D;
+}
+.signup-container h4
+{
+    color: black;
+}
