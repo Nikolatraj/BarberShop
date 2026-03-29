@@ -71,7 +71,7 @@ function ZakaziTerminContent() {
     };
 
     const handleBooking = async () => {
-        // Check if all fields are selected
+        
         if (!selectedService) {
             alert('Molimo izaberite uslugu');
             return;
@@ -89,7 +89,6 @@ function ZakaziTerminContent() {
             return;
         }
 
-        // Calculate adjusted price based on barber
         let cena = selectedService.price;
         if(selectedFrizer?.id === 1){
             cena = Math.ceil(cena * 1.7 / 100)*100;
