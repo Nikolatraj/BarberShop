@@ -1,0 +1,218 @@
+.admin-section {
+  width: 90%;
+  max-width: 1300px;
+  margin: auto;
+  padding: 50px 0;
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.admin-header h1 {
+  font-size: 80px;
+  font-weight: 900;
+}
+
+.admin-header span {
+  color: #2C407D;
+}
+
+.admin-header p {
+  color: #aaa;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.admin-section h2 {
+  font-size: 32px;
+  margin: 50px 0 20px 0;
+}
+
+.admin-statistika {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.admin-kartica {
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 18px;
+  padding: 30px;
+  text-align: center;
+}
+
+.admin-kartica h3 {
+  font-size: 50px;
+  color: #2C407D;
+}
+
+.admin-kartica p {
+  color: #bdbdbd;
+  margin-top: 5px;
+}
+
+.admin-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  background: #111;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.admin-tabela th {
+  text-align: left;
+  padding: 18px;
+  background: #2C407D;
+  font-size: 16px;
+}
+
+.admin-tabela td {
+  padding: 18px;
+  color: #bdbdbd;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.admin-tabela tr:hover td {
+  background: rgba(44, 64, 125, 0.15);
+}
+
+.admin-obrisi-btn {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 30px;
+  background: #7a1f1f;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.admin-obrisi-btn:hover {
+  transform: scale(1.05);
+  background: #9c2626;
+}
+
+.admin-rola {
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 14px;
+  background: #222;
+  color: #bdbdbd;
+}
+
+.admin-rola.admin {
+  background: #2C407D;
+  color: white;
+}
+
+.admin-prazno {
+  color: #aaa;
+  font-size: 18px;
+}
+
+@media (max-width: 900px) {
+  .admin-header h1 {
+    font-size: 50px;
+  }
+
+  .admin-statistika {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-tabela {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+.admin-forma {
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 18px;
+  padding: 30px;
+  margin-bottom: 25px;
+}
+
+.admin-forma h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.admin-forma-polja {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.admin-forma input,
+.admin-forma select {
+  padding: 14px 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 30px;
+  background: #1a1a1a;
+  color: white;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.admin-forma input::placeholder {
+  color: #777;
+}
+
+.admin-forma input:focus,
+.admin-forma select:focus {
+  border-color: #2C407D;
+}
+
+.admin-forma select option {
+  background: #1a1a1a;
+}
+
+.admin-dodaj-btn {
+  grid-column: 1 / -1;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 30px;
+  background: #2C407D;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.admin-dodaj-btn:hover:not(:disabled) {
+  transform: scale(1.02);
+  background: #3a539f;
+}
+
+.admin-dodaj-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .admin-forma-polja {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-cena {
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  color: #bdbdbd;
+  font-size: 15px;
+}
+
+.admin-oznaka {
+  margin-left: 8px;
+  padding: 3px 10px;
+  border-radius: 30px;
+  background: #2C407D;
+  color: white;
+  font-size: 12px;
+}

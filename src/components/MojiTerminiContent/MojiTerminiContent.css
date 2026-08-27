@@ -1,0 +1,147 @@
+.moji-termini-section {
+  width: 90%;
+  max-width: 1300px;
+  margin: auto;
+  padding: 50px 0;
+}
+
+.moji-termini-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.moji-termini-header h1 {
+  font-size: 80px;
+  font-weight: 900;
+}
+
+.moji-termini-header span {
+  color: #2C407D;
+}
+
+.moji-termini-header p {
+  color: #aaa;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.moji-termini-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.moji-termini-kartica {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 18px;
+  padding: 30px;
+  transition: 0.3s;
+}
+
+.moji-termini-kartica:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(36, 71, 184, 0.25);
+}
+
+.moji-termini-info h3 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.moji-termini-info h4 {
+  color: #2C407D;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.moji-termini-info p {
+  color: #bdbdbd;
+}
+
+.moji-termini-desno {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+}
+
+.moji-termini-desno span {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.moji-termini-desno button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  background: #7a1f1f;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.moji-termini-desno button:hover {
+  transform: scale(1.05);
+  background: #9c2626;
+}
+
+.moji-termini-prazno {
+  text-align: center;
+  padding: 60px 30px;
+  background: #111;
+  border-radius: 20px;
+}
+
+.moji-termini-prazno h2 {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.moji-termini-prazno p {
+  color: #bdbdbd;
+  margin-bottom: 30px;
+}
+
+.moji-termini-prazno button {
+  padding: 15px 40px;
+  border: none;
+  border-radius: 30px;
+  background: #2C407D;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.moji-termini-prazno button:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+  .moji-termini-header h1 {
+    font-size: 50px;
+  }
+
+  .moji-termini-kartica {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .moji-termini-prazno h2 {
+    font-size: 32px;
+  }
+}
+
+.moji-termini-info small {
+  display: block;
+  margin-top: 8px;
+  color: #777;
+  font-size: 14px;
+}

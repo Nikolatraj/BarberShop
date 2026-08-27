@@ -1,0 +1,123 @@
+.team-section {
+  width: 90%;
+  max-width: 1300px;
+  margin: auto;
+  padding: 50px 0;
+}
+
+.team-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.team-header h1 {
+  font-size: 80px;
+  font-weight: 900;
+}
+
+.team-header span {
+  color: #2C407D;
+}
+
+.team-header p {
+  color: #aaa;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.team-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.team-card {
+  background: #111;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: 0.3s;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(36, 71, 184, 0.25);
+}
+
+.team-card img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+}
+
+.team-card-content {
+  padding: 25px;
+}
+
+.team-card-content h3 {
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+.team-card-content h4 {
+  color: #2C407D;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.team-card-content p {
+  color: #bdbdbd;
+  line-height: 1.7;
+}
+
+.team-cta {
+  text-align: center;
+  margin-top: 90px;
+  padding: 60px 30px;
+  background: #111;
+  border-radius: 20px;
+}
+
+.team-cta h2 {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.team-cta p {
+  color: #bdbdbd;
+  margin-bottom: 30px;
+}
+
+.team-cta button {
+  padding: 15px 40px;
+  border: none;
+  border-radius: 30px;
+  background: #2C407D;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.team-cta button:hover {
+  transform: scale(1.05);
+  background: #2C407D;
+}
+
+@media (max-width: 900px) {
+  .team-container {
+    grid-template-columns: 1fr;
+  }
+
+  .team-header h1 {
+    font-size: 50px;
+  }
+
+  .team-cta h2 {
+    font-size: 32px;
+  }
+
+  .team-card img {
+    height: 320px;
+  }
+}

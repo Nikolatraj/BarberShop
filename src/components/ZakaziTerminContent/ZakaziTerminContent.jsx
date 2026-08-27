@@ -3,38 +3,22 @@ import 'react-calendar/dist/Calendar.css';
 import Calendar from 'react-calendar';
 import { useState } from 'react'; 
 import { useNavigate } from 'react-router-dom';
-import mi from "@/assets/mi.png";
+import { getUser, apiFetch } from "@/auth";
+import { usluge, frizeri, RadnoVreme, izracunajCenu } from "@/data/salon";
 
 function ZakaziTerminContent() {
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const [selectedFrizer, setSelectedFrizer] = useState(); 
+    const [selectedFrizer, setSelectedFrizer] = useState();
     const [selectedTime, setSelectedTime] = useState();
     const [selectedService, setSelectedService] = useState();
     const navigate = useNavigate();
+    const user = getUser();
 
-    const frizeri = [
-        { id: 1, name: "Nikola",img: mi },
-        { id: 2, name: "Nemanja", img: mi },
-        { id: 3, name: "Ognjen", img: mi }
-    ];
-
-    const usluge = [
-        { id: 1, name: "Klasično šišanje", price: 1200},
-        { id: 2, name: "Sređivanje brade", price: 900},
-        { id: 3, name: "Fade šišanje", price: 1400},
-        { id: 4, name: "Dečije šišanje", price: 1000}
-    ];
-    
     const RezervisaniTermini = [
         new Date(2026, 1, 25), 
         new Date(2026, 1, 28), 
     ];
     
-    const RadnoVreme = [
-        "09:00", "10:00", "11:00", "12:00",
-        "13:00", "14:00", "15:00", "16:00", "17:00"
-    ];
-
     const RezervisanaVremena = [
         { frizerId: 1, date: "2026-02-20", time: "10:00" },
         { frizerId: 1, date: "2026-02-20", time: "14:00" },
@@ -71,7 +55,12 @@ function ZakaziTerminContent() {
     };
 
     const handleBooking = async () => {
-        
+
+        if (!user) {
+            alert('Morate biti ulogovani da biste zakazali termin');
+            navigate('/login');
+            return;
+        }
         if (!selectedService) {
             alert('Molimo izaberite uslugu');
             return;
@@ -99,18 +88,22 @@ function ZakaziTerminContent() {
         else if(selectedFrizer?.id === 3){
             cena = Math.round(cena * 1 / 100)*100;
         }
-     
 
-        
-    
+        const bookingData = {
+            serviceId: selectedService.id,
+            serviceName: selectedService.name,
+            servicePrice: cena,
+            frizerId: selectedFrizer.id,
+            frizerName: selectedFrizer.name,
+            datum: selectedDate.toISOString().split('T')[0],
+            vreme: selectedTime
+        };
+
         try {
-            const response = await fetch('http://localhost:8000/api/zakazi-termin', {
+            const data = await apiFetch('/zakazi-termin', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(bookingData)
             });
-
-            const data = await response.json();
             
             if (data.success) {
                 alert('Termin uspešno zakazan!');
@@ -132,16 +125,7 @@ function ZakaziTerminContent() {
                 <h2>Izaberite uslugu</h2>
                 <div className="usluge-container">
                    {usluge.map(usluga => {
-                    let cena = usluga.price;
-                    if(selectedFrizer?.id === 1){
-                        cena = Math.ceil(cena * 1.7 / 100)*100;
-                    }
-                    else if(selectedFrizer?.id === 2){
-                        cena = Math.round(cena * 1.4 / 100)*100;
-                    }
-                    else if(selectedFrizer?.id === 3){
-                        cena = Math.round(cena * 1 / 100)*100;
-                    }
+                    const cena = izracunajCenu(usluga, selectedFrizer);
                     return (
                         <div 
                             key={usluga.id}  
@@ -208,6 +192,7 @@ function ZakaziTerminContent() {
                 )}
             </div>
         </div>
+        
     )
 }
 export default ZakaziTerminContent

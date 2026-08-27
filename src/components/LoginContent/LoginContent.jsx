@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import "./LoginContent.css";
 import logo from "@/assets/logo-krug.png";
+import { setUser, setToken } from "@/auth";
 
 function LoginContent()
 {
@@ -30,8 +31,9 @@ function LoginContent()
             const data = await response.json();
             
             if (data.success) {
-                alert('Uspešno ste se ulogovali!');
-                navigate('/');
+                setToken(data.token);
+                setUser(data.user);
+                navigate(data.user.role === 'admin' ? '/admin' : '/');
             } else {
                 alert('Greška: ' + data.message);
             }
